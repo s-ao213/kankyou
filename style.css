@@ -1,0 +1,136 @@
+.photo1{
+    width: 70%;
+    height: 70%;
+}
+.photo2{
+    width: 50%;
+    height: 50%;
+}
+.photo3{
+    width: 100%;
+    height: 100%;
+}
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+html {
+    scroll-behavior: smooth;
+}
+.pagetop {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #fff;
+    border: solid 2px #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.pagetop__arrow {
+    height: 10px;
+    width: 10px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: translateY(20%) rotate(-45deg);
+}
+
+.pagetop {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #fff;
+    border: solid 2px #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.pagetop__arrow {
+    height: 10px;
+    width: 10px;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000;
+    transform: translateY(20%) rotate(-45deg);
+}
+pre {
+    margin: 1em 0; /* ブロック前後の余白 */
+    padding: 1em; /* ブロック内の余白 */
+    border-radius: 5px; /* 角丸 */
+    background: #25292f; /* 背景色 */
+    color: #fff; /* 文字色 */
+    white-space: pre-wrap; /* はみ出たときに折り返す */
+    max-width: auto;
+}
+
+code {
+    display: inline-block;
+    padding: 0.1em 0.25em; /* 文字周りの余白 */
+    color: #444; /* 文字色 */
+    background-color: #e7edf3; /* 背景色 */
+    border-radius: 3px; /* 角丸 */
+    border: solid 1px #d6dde4; /* 枠線 */
+}
+
+.code-container {
+    position: relative;
+}
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+/* スマートフォン縦 (0-480px) */
+@media only screen and (max-width: 480px) {
+    body{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+/* スマートフォン横 (480-670px) */
+@media only screen and (min-width: 481px) and (max-width: 670px) {
+    body{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+/* タブレット (670-960px) */
+@media only screen and (min-width: 671px) and (max-width: 960px){
+    body{
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+    }
+
+/* ノートPC (960-1280px) */
+@media only screen and (min-width: 961px) and (max-width: 1280px){
+    body{
+        padding-left: 20%;
+        padding-right: 15%;
+    }
+}
+
+/* モニター等 (1280px以上) */
+@media only screen and (min-width: 1281px){
+    body{
+        padding-left: 20%;
+        padding-right: 15%;
+    }
+}

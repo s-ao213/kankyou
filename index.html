@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C/C++ローカル環境構築</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css">
+</head>
+<body>
+<u><h1 id="pagetop">C/C++のローカル環境構築まとめ</h1></u>
+<u><h2 id="index">目次</h2></u>
+<a class="pagetop" href="#"><div class="pagetop__arrow"></div></a>
+
+<ul>
+    <li><a href="#lesson1">1章　前提条件と注意事項</a></li>
+    <li><a href="#lesson2">2章　MinGWのインストールの設定</a></li>
+    <li><a href="#lesson3">3章　Visual Studio Codeのインストールと設定</a></li>
+    <li><a href="#lesson4">4章　文字化け防止の設定</a></li>
+    <li><a href="#lesson5">5章　中で発生するかもしれないエラーへの対処法</a></li>
+    <li><a href="#lesson6">6章　参考文献</a></li>
+</ul>
+
+<div>
+    <u><h2 id="lesson1">1章　前提条件と注意事項</h2></u>
+    <p><a href="#index">目次に戻る</a></p>
+    <li>この説明はWindows11の環境でのみ動作確認をしています。</li>
+    <li>MinGWなどのインストールはedge以外で行うようにしてください。edgeから正常にインストールできなかった事例がありました。</li>
+    <li>ダウンロードを行う時はpathに全角が入らないようにしてください。ユーザー名が漢字フルネームで正常な処理ができなかった事例がありました。</li>
+    <li>今回紹介する方法があくまで一例であるので、他の方法で試していただいても構いません。この説明はプロ研入部の新一年生向けに作成しています。</li>
+</div>
+
+<div>
+    <u><h2 id="lesson2">2章　MinGWのインストールと設定</h2></u>
+    <p><a href="#index">目次に戻る</a></p>
+    <u><h3>インストール作業</h3></u>
+    <p>まず初めに<a href="https://github.com/niXman/mingw-builds-binaries">このサイト</a>にアクセスしてMinGWのインストールを行います。</p>
+    <img class="photo1" src="MinGWのインストール画面.png" alt="インストール画面">
+    <p>
+        上の画像の矢印で示されいている<strong>MinGW-W64 online installer</strong>という文字をクリックしダウンロードを開始します。
+        <br>
+        ※この時ダウンロード先を聞かれるので任意の場所に保存してください。どこでも構いませんが，ここではダウンロードに保存しました。
+    </p>
+    <p>ダウンロードが完了したらダウンロードしたファイルを開きます。</p>
+    <img class="photo2" src="MinGWのインストール画面2.png" alt="インストール画面2">
+    <p>ファイルを開くとこのような警告が出ると思いますが問題ないので、<strong>実行</strong>を押します。</p>
+    <img class="photo1" src="MinGWのインストール画面3.png" alt="インストール画面3">
+    <p>このような画面が表示されたら，そのまま<strong>Next→</strong>を押してください。</p>
+    <img class="photo1" src="MinGWのインストール画面4.png" alt="インストール画面4">
+    <p>バージョンの選択画面が表示されたら<strong>13.2.0</strong>を選択し<strong>Next→</strong>を押してください。</p>
+    <img class="photo1" src="MinGWのインストール画面5.png" alt="インストール画面5">
+    <p>画像のような画面が表示されたら<strong>64bit</strong>を選択し<strong>Next→</strong>を押してください。</p>
+    <img class="photo1" src="MinGWのインストール画面6.png" alt="インストール画面6">
+    <p>次の画面では<strong>win32</strong>を選択して<strong>Next→</strong>を押します。</p>
+    <img class="photo1" src="MinGWのインストール画面7.png" alt="インストール画面7">
+    <p>ここではすでに<strong>rev1</strong>が選択されていると思うのでそのまま<strong>Next→</strong>を押してください。</p>
+    <img class="photo1" src="MinGWのインストール画面8.png" alt="インストール画面8">
+    <p>ここでもすでに<strong>msvcrt</strong>が選択されていると思うのでそのまま<strong>Next→</strong>を押してください。</p>
+    <img class="photo1" src="MinGWのインストール画面9.png" alt="インストール画面9">
+    <p>この画面でMinGWを保存する場所を決めますが、<strong>C:/Users/ユーザー名/</strong>になっているかを確認して下さい。違う場合はchooseから変更してください。選択できていることが確認ができたら、<strong>Process</strong>を押してそのままインストールしてください。終了後<strong>finish</strong>を押してパソコンを再起動したらインストール作業は終了です。</p>
+
+    <u><h3>pathの設定</h3></u>
+    <p>次にpathの設定を行います。PC画面下のタスクバーかウィンドウズボタンを押して、検索画面に<strong>環境変数</strong>と入れて，<strong>環境変数の編集</strong>を開きます。</p>
+    <img class="photo2" src="環境変数.png" alt="環境変数の編集">
+    <br>
+    <img class="photo2" src="環境変数2.png" alt="環境変数の編集">
+    <p>この画面が表示されたら、矢印で示しているpathを選択し編集を押します。</p>
+    <img class="photo2" src="環境変数3.png" alt="環境変数の編集">
+    <p>この小ウィンドウが表示されたら<strong>新規</strong>を押して、<strong>C:/Users/ユーザー名/mingw64/bin</strong>と入力すします。このときユーザー名の部分を必ずあなたの名前に変更してください。登録ができたらOKを押して画面をすべて閉じたらパソコンを一度再起動します。</p>
+    <p>再起動が終わったらターミナル（コマンドプロンプト）を先ほどと同様に検索窓から検索して開きます。</p>
+    <img class="photo3" src="コマンドプロンプト.png" alt="コマンドの画像">
+    <p>コマンドプロンプトで<strong><code>gcc -version</code></strong>と入力してください。gccと--versionの間には半角スペースを忘れずに入れてください。入力できたらEnterキーを押して、上記の画像のような出力ができているかを確認して下さい。</p>
+    <p>この出力が表示されて入ればMinGWの設定は終了です。</p>
+
+    <u><h4>設定ができていない場合</h4></u>
+    <p>先ほど使用したコマンドプロンプトのプラスマークの横のマークからか検索窓から検索をしてWindows PowerShell を開きます。そこで<strong><code>$END:Path</code></strong>と入力し出力を確認します。出力結果の中に先ほど入力した<strong>C:/Users/ユーザー名/mingw64/bin</strong>があるかを確認し，なければ，<strong><code>$ENV:Path="C:/Users/ユーザー名/mingw64/bin"</code></strong>を入力し再度再起動してもう一度確認作業を行ってください。これでしっかりとpathが登録できていれば、コマンドプロンプトでの確認作業に戻り正常に動作していれば終了してください。</p>
+    <p>これでも解決しない場合は、エラーや状態を検索するか、もう一度pathの追加の部分からやり直してみてください。</p>
+</div>
+
+<div>
+    <h3 id="lesson3">3章　Visual Studio Codeのインストールと設定</h3>
+    <p>まず初めに<a href="https://code.visualstudio.com/download">こちらのリンク</a>にアクセスしてインストーラーをダウンロードし、MinGWと同様に実行します。この時Windowsのパソコンを使っている場合は、選択肢の一番左側にあるWindowsの大きいボタンをクリックしてください。</p>
+    <p>先ほどのMinGWと同様に同意や保存先の選択などを行います。特に好みがない場合はデフォルトで問題ありません。一つだけ途中の選択で、<strong>追加タスクの選択</strong>の画面はすべてチェックを入れることを推奨します。</p>
+    <p>インストールがすべて終わったら、Visual Studio Codeを開きます。ここからはプログラムをするのに必要な拡張機能の設定を行っていきます。</p>
+    <img class="photo1" src="VScode写真.png" alt="VScodeを開いた画面の写真">
+    <p>まず日本語の表示設定を行います。上の画像の矢印で指しているアイコンをタップし<strong>Japanese Language Pack for Visual Studio Code</strong>と検索してください。</p>
+    <img class="photo1" src="日本語の設定.png" alt="VScodeの日本語表示の設定">
+    <p>上の画像の拡張機能を見つけクリックし、<strong>install</strong>を選択します。インストールが完了したら、アプリの再起動を行います。画面右下に<strong>Change Language and Restart</strong>という案内が出てくると思うので、それを押して再起動すると日本語の画面が表示されると思います。このような案内が出てこない場合は各自手動で再起動を行ってください。</p>
+    <p>次にC/C++を動かすのに必要な最低限の拡張機能を紹介します。拡張機能は今回紹介するもの以外にも、全角を検知して指摘してくれたりプログラミングをする上で、必要なサポートをしてくれるものがそろっているので、各自調べてインストールしてみてください。</p>
+    <img class="photo1" src="CC++.png" alt="C/C++の画像">
+    <p>> C/C++ Extension Packをインストールしてください。ここでは再起動等の処理は必要ありません。</p>
+    <img class="photo1" src="CodeRunner.png" alt="Coderunnerの画像">
+    <p>次にCode Runnerをインストールします。ここまで同様にインストールをしたら、画像の矢印に示す歯車マークをクリックし、<strong>拡張機能の設定</strong>を選択します。</p>
+    <img class="photo1" src="CodeRunner2.png" alt="Coderunnerの画像2">
+    <p>設定画面をスクロールして画像に示している、<strong>Run in Terminal</strong>にチェックを入れます。</p>
+    <p>これでVisual Studio Codeの設定は終了です。ここからは一度実行できるかを確認していきます。</p>
+    <img class="photo1" src="フォルダの作成.png" alt="フォルダを作成している様子">
+    <p>上記の画像の矢印に示す部分をクリックして任意ののフォルダーを開いて下さい。</p>
+    <img class="photo1" src="ファイルの作成.png" alt="ファイルを作成している様子">
+    <p>画像を参考に<code>sample.cpp</code>というファイルを作成して、下記のコードを貼り付けてください。</p>
+    <div class="code-container">
+        <button class="copy-button" onclick="copyCode()">コピー</button>
+        <pre><code class="cpp">
+    #include &lt;iostream&gt;
+    using namespace std;
+    
+    int main() {
+        cout << "Hello world" << endl; //Hello worldを出力
+        return 0;
+    }
+        </code></pre>
+    </div>
+    <p>これはC++でHello Worldを出力するプログラムです。プログラムを貼ったら、画像に示した三角ボタンの横のマークをクリックし、<strong>Run Code</strong>を選んで実行します。画像のような出力が得られれば成功です。</p>
+    <img class="photo1" src="実行画面.png" alt="実行画面">
+</div>
+
+<div>
+    <h3 id="lesson4">4章　文字化け防止の設定</h3>
+    <p>先ほどHello World と出力したと思いますが、これを下記のようなコードに書き換えてみてください。</p>
+    <div class="code-container">
+        <button class="copy-button" onclick="copyCode()">コピー</button>
+        <pre><code class="cpp">
+    #include &lt;iostream&gt;
+    using namespace std;
+    
+    int main() {
+        cout << "こんにちは" << endl; //こんにちはを出力
+        return 0;
+    }
+        </code></pre>
+    </div>
+    <img class="photo1" src="文字化け出力.png" alt="文字化けで出力されている画面">
+    <p>先ほどと同様に出力しようとすると画像のような出力になったかと思います。何も設定を行わずに全角文字を出力しようとすると文字化けが起こるのでその直し方を説明します。</p>
+    <img class="photo1" src="文字化け設定.png" alt="文字化けの設定画面">
+    <p>4章で説明したCode Runnerの設定に進み、<strong>Code-runner: Executor Map</strong>を探してその下にある<strong>setting.jsonで編集</strong>をクリックします。</p>
+    <img class="photo1" src="settingjson画面.png" alt="settingjson画面">
+    <p>矢印で示した2行を変更していきます。まず画像の12行目C言語の設定をしていただきます。デフォルトではダブルクオーテーション内が<br><code>"cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"</code><br>となっていると思うのですが、以下のように変更してください。</p>
+    <div class="code-container">
+        <button class="copy-button" onclick="copyCode()">コピー</button>
+        <pre><code class="cpp" style="font-size: 90%;">
+    "cd $dir && gcc -fexec-charset=CP932 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+        </code></pre>
+    </div>
+    <p>次に画像の13行目C++の設定をしていただきます。デフォルトではダブルクオーテーション内が<br><code>"cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"</code><br>となっていると思うのですが、以下のように変更してください。</p>
+    <div class="code-container">
+        <button class="copy-button" onclick="copyCode()">コピー</button>
+        <pre><code class="cpp" style="font-size: 90%;">
+    "cd $dir && g++ -fexec-charset=CP932 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+        </code></pre>
+    </div>
+    <p>これで文字化けが解消されると思います。もう一度おはようを出力してみてください。もし解消されない場合は、エラーや状態を検索するか、もう一度設定の部分からやり直してみてください。</p>
+</div>
+
+<div>
+    <h3 id="lesson5">5章　途中で発生するかもしれないエラーへの対処法</h3>
+    基本的には打ち間違えやコピーミスが原因である可能性が高いので間違えていないかを見直してください。また設定が反映されていない場合もあるのでパソコンやアプリの再起動も有効な手段の一つです。それでもエラーが起こる場合は、エラーや状態を検索するかもう一度設定の部分からやり直してみてください。また、6章に参考にしたサイトのリンクを貼っています。それを確認しながら進めていってもらっても構いません。
+</div>
+
+<div>
+    <h3 id="lesson6">6章　参考文献</h3>
+    <p>こちらのサイトを作るにあたり参考にさせていただいたサイト一覧です。</p>
+    <ul>
+        <li><a href="https://qiita.com/mkkwk/items/1075b6a0219450d1a07e">C言語の環境構築</a></li>
+        <li><a href="https://www602.math.ryukoku.ac.jp/Prog1/vscode-win.html">visual studio Codeのインストール</a></li>
+        <li><a href="https://www.javadrive.jp/vscode/install/index4.html#google_vignette">visual studio Codeの日本語化</a></li>
+        <li><a href="https://zenn.dev/12morosy/articles/180bca27a1cb49">文字化けを直す</a>
+    </ul>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="script.js" defer></script>
+</body>
+</html>
